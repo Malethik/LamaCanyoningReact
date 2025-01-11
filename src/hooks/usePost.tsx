@@ -16,7 +16,7 @@ const usePost = <T,>() => {
         throw new Error("URL del backend non configurato");
       }
 
-      const response = await fetch(`${baseUrl}${endpoint}`, {
+      const response = await fetch(`${baseUrl}/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
