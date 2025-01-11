@@ -1,8 +1,7 @@
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <>
       <div>Home</div>
-      
     </>
   );
 };
