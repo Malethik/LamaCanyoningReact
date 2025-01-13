@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import usePost from "../hooks/usePost";
-import { Item } from "../model/user";
+import { Item } from "../model/item";
 import SupplierSelect from "../hooks/SupplierSelect";
+import { Button, Label, TextInput } from "flowbite-react";
 
 const CreateItem: React.FC = () => {
   const { data, error, loading, postData } = usePost<Item>();
@@ -17,38 +18,78 @@ const CreateItem: React.FC = () => {
 
   return (
     <>
-      <h2>CreateItem</h2>
+      
       <div>
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
+          {/* Nome */}
+          <div className="mb-2 block">
+            <Label htmlFor="name" color="info" value="Nome" />
+          </div>
+          <TextInput
+            id="name"
             placeholder="Nome"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
+            color="info"
           />
-          <input
-            type="text"
+
+          {/* Descrizione */}
+          <div className="mb-2 block">
+            <Label htmlFor="description" color="info" value="Descrizione" />
+          </div>
+          <TextInput
+            id="description"
             placeholder="Descrizione"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            required
+            color="info"
           />
-          <input
+
+          {/* Prezzo */}
+          <div className="mb-2 block">
+            <Label htmlFor="price" color="info" value="Prezzo" />
+          </div>
+          <TextInput
+            id="price"
             type="number"
             placeholder="Prezzo"
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
+            required
+            color="info"
           />
-          <input
+
+          {/* Quantità */}
+          <div className="mb-2 block">
+            <Label htmlFor="quantity" color="info" value="Quantità" />
+          </div>
+          <TextInput
+            id="quantity"
             type="number"
             placeholder="Quantità"
             value={quantity}
             onChange={(e) => setQuantity(Number(e.target.value))}
+            required
+            color="info"
           />
+
+          {/* Supplier */}
+          <div className="mb-2 block">
+            <Label htmlFor="supplier" color="info" value="Fornitore" />
+          </div>
           <SupplierSelect onSupplierChange={setSupplier} />
 
-          <button type="submit" disabled={loading}>
+          {/* Bottone Submit */}
+          <Button
+            className="mt-2.5"
+            type="submit"
+            disabled={loading}
+            color="info"
+          >
             {loading ? "Creando..." : "Crea Oggetto"}
-          </button>
+          </Button>
         </form>
         {error && <p>Errore: {error}</p>}
         {data && <p>Oggetto creato con ID: {data.id}</p>}

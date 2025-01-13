@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "./components/Frontend";
+import Header from "./components/Header.tsx";
 import Home from "./pages/Home.tsx";
 import ItemList from "./pages/ItemList.tsx";
 import SupplierList from "./pages/SuppliersList.tsx";

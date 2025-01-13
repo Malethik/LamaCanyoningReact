@@ -10,7 +10,6 @@ const NavBar = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 768);
-      // Se la finestra diventa desktop, chiudi il menu mobile
       if (window.innerWidth >= 768) {
         setIsMenuOpen(false);
       }
@@ -21,7 +20,12 @@ const NavBar = () => {
   }, []);
 
   const handleToggle = () => {
-    setIsMenuOpen(!isMenuOpen); // Cambia lo stato del menu
+    setIsMenuOpen(!isMenuOpen);
+  };
+  const handleLinkClick = () => {
+    if (!isDesktop) {
+      setIsMenuOpen(false);
+    }
   };
 
   return (
@@ -30,53 +34,39 @@ const NavBar = () => {
         <h1>CMR LAMA CANYONING</h1>
         <Navbar.Toggle onClick={handleToggle} />
         <Navbar.Collapse
-          className={isDesktop ? "flex" : isMenuOpen ? "block" : "hidden"}
+          className={`${
+            isDesktop ? "flex" : isMenuOpen ? "block" : "hidden"
+          } rounded-lg  mt-2.5`}
         >
           <Navbar.Link
-            className="block py-2 pl-3 pr-4 md:p-0 bg-green-100 md:bg-transparent md:text-cyan-700"
+            className="block py-2 pl-3 pr-4 md:p-0 bg-green-100  md:bg-transparent md:text-cyan-700"
             as={Link}
             to="/"
             title="Home"
+            onClick={handleLinkClick}
           >
             Home
           </Navbar.Link>
           <Navbar.Link
-            className="block py-2 pl-3 pr-4 md:p-0 bg-green-100 md:bg-transparent md:text-cyan-700"
+            className="block py-2 pl-3 pr-4 md:p-0 bg-green-100  md:bg-transparent md:text-cyan-700"
             as={Link}
             to="/item"
             title="Inventario"
+            onClick={handleLinkClick}
           >
             Inventario
           </Navbar.Link>
           <Navbar.Link
-            className="block py-2 pl-3 pr-4 md:p-0 bg-green-100 md:bg-transparent md:text-cyan-700"
+            className="block py-2 pl-3 pr-4 md:p-0 bg-green-100  md:bg-transparent md:text-cyan-700"
             as={Link}
             to="/supplier"
             title="Fornitori"
+            onClick={handleLinkClick}
           >
             Fornitori
           </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
-      {/* <nav>
-        <ul>
-          <li>
-            <Link to="/" title="Home">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/item" title="Inventario">
-              Inventario
-            </Link>
-          </li>
-          <li>
-            <Link to="/supplier" title="Fornitori">
-              Fornitori
-            </Link>
-          </li>
-        </ul>
-      </nav> */}
     </>
   );
 };
