@@ -3,7 +3,7 @@ import { Button, Table } from "flowbite-react";
 import useFetch from "../hooks/useFetch";
 import { Item } from "../model/item";
 import { useState } from "react";
-import CreateItemModal from "../components/CreateItemModal";
+import CreateModal from "../components/CreateItemModal";
 
 const ItemList: React.FC = () => {
   const { data, error, loading } = useFetch<Item[]>("item");
@@ -27,14 +27,22 @@ const ItemList: React.FC = () => {
       <>
         <Button onClick={() => setOpenModal(true)}>Create New Item</Button>
         <div>No items</div>
-        <CreateItemModal openModal={openModal} setOpenModal={setOpenModal} /> 
+        <CreateModal
+          contentType="item"
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        />
       </>
     );
   }
   return (
     <>
-      <Button onClick={() => setOpenModal(true)}>Create New Item</Button> 
-      <CreateItemModal openModal={openModal} setOpenModal={setOpenModal} />
+      <Button onClick={() => setOpenModal(true)}>Create New Item</Button>
+      <CreateModal
+        contentType="item"
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
       <div className="overflow-x-auto">
         <Table striped>
           <Table.Head>

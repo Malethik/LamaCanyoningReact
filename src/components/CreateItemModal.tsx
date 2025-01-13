@@ -1,18 +1,32 @@
 import { Modal } from "flowbite-react";
 
 import CreateItem from "../components/CreateItem";
+import CreateSupplier from "./CreateSupplier";
 
 interface CreateItemModalProps {
   openModal: boolean;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  contentType: "item" | "supplier";
 }
 
-const CreateItemModal: React.FC<CreateItemModalProps> = ({
+const CreateModal: React.FC<CreateItemModalProps> = ({
   openModal,
   setOpenModal,
+  contentType,
 }) => {
   const onCloseModal = () => {
-    setOpenModal(false); 
+    setOpenModal(false);
+  };
+
+  const renderContent = () => {
+    switch (contentType) {
+      case "item":
+        return <CreateItem />;
+      case "supplier":
+        return <CreateSupplier />;
+      default:
+        return <div>Contenuto non disponibile</div>;
+    }
   };
 
   return (
@@ -22,9 +36,11 @@ const CreateItemModal: React.FC<CreateItemModalProps> = ({
         <Modal.Body>
           <div className="space-y-6">
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-              Create New Item
+              {contentType === "item"
+                ? "Crea Nuovo Articolo"
+                : "Crea Nuovo Fornitore"}
             </h3>
-            <CreateItem /> 
+            {renderContent()}
           </div>
         </Modal.Body>
       </Modal>
@@ -32,4 +48,4 @@ const CreateItemModal: React.FC<CreateItemModalProps> = ({
   );
 };
 
-export default CreateItemModal;
+export default CreateModal;
