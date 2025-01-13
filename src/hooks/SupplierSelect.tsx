@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Supplier } from "../model/supplier";
+import { Label, Select } from "flowbite-react";
 
 type SupplierSelectProps = {
   onSupplierChange: (id: number) => void; // Callback per aggiornare il fornitore selezionato
@@ -37,8 +38,8 @@ const SupplierSelect: React.FC<SupplierSelectProps> = ({
 
   return (
     <div>
-      <label htmlFor="supplier">Seleziona Fornitore:</label>
-      <select id="supplier" value={selectedSupplier} onChange={handleChange}>
+      <Label htmlFor="supplier"></Label>
+      <Select id="supplier" value={selectedSupplier} onChange={handleChange}>
         <option value="" disabled>
           -- Seleziona un fornitore --
         </option>
@@ -47,7 +48,7 @@ const SupplierSelect: React.FC<SupplierSelectProps> = ({
             {supplier.name}
           </option>
         ))}
-      </select>
+      </Select>
     </div>
   );
 };
