@@ -11,14 +11,14 @@ const CreateItem: React.FC = () => {
   const [price, setPrice] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(0);
   const [supplierId, setSupplier] = useState<number>(0);
+  const [cost, setCost] = useState<number>(0);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await postData("item", { name, description, price, quantity, supplierId });
+    await postData("item", { name, description, price, quantity, supplierId, cost });
   };
 
   return (
     <>
-      
       <div>
         <form onSubmit={handleSubmit}>
           {/* Nome */}
@@ -57,6 +57,20 @@ const CreateItem: React.FC = () => {
             placeholder="Prezzo"
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
+            required
+            color="info"
+          />
+
+          {/* Costo */}
+          <div className="mb-2 block">
+            <Label htmlFor="price" color="info" value="Costo" />
+          </div>
+          <TextInput
+            id="costo"
+            type="number"
+            placeholder="Costo"
+            value={cost}
+            onChange={(e) => setCost(Number(e.target.value))}
             required
             color="info"
           />

@@ -1,21 +1,27 @@
 import { Modal } from "flowbite-react";
 
-import CreateItem from "../components/CreateItem";
+import CreateItem from "./CreateItem";
 import CreateSupplier from "./CreateSupplier";
+import CreateOrder from "./CreateOrder";
 
-interface CreateItemModalProps {
+interface CreateModalProps {
   openModal: boolean;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-  contentType: "item" | "supplier";
+  contentType: "item" | "supplier" | "order";
+  onClose?: () => void;
 }
 
-const CreateModal: React.FC<CreateItemModalProps> = ({
+const CreateModal: React.FC<CreateModalProps> = ({
   openModal,
   setOpenModal,
   contentType,
+  onClose,
 }) => {
   const onCloseModal = () => {
     setOpenModal(false);
+    if (onClose) {
+      onClose(); // Chiamata alla funzione passata come prop
+    }
   };
 
   const renderContent = () => {
@@ -24,8 +30,22 @@ const CreateModal: React.FC<CreateItemModalProps> = ({
         return <CreateItem />;
       case "supplier":
         return <CreateSupplier />;
+      case "order":
+        return <CreateOrder />;
       default:
         return <div>Contenuto non disponibile</div>;
+    }
+  };
+  const getTitle = () => {
+    switch (contentType) {
+      case "item":
+        return "Crea Nuovo Articolo";
+      case "supplier":
+        return "Crea Nuovo Fornitore";
+      case "order":
+        return "Crea Nuovo Ordine";
+      default:
+        return "Contenuto non disponibile";
     }
   };
 
@@ -36,9 +56,7 @@ const CreateModal: React.FC<CreateItemModalProps> = ({
         <Modal.Body>
           <div className="space-y-6">
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">
-              {contentType === "item"
-                ? "Crea Nuovo Articolo"
-                : "Crea Nuovo Fornitore"}
+              {getTitle()}
             </h3>
             {renderContent()}
           </div>

@@ -3,7 +3,7 @@ import { Button, Table } from "flowbite-react";
 import useFetch from "../hooks/useFetch";
 import { Item } from "../model/item";
 import { useState } from "react";
-import CreateModal from "../components/CreateItemModal";
+import CreateModal from "../components/CreateModal";
 
 const ItemList: React.FC = () => {
   const { data, error, loading } = useFetch<Item[]>("item");
@@ -48,6 +48,7 @@ const ItemList: React.FC = () => {
           <Table.Head>
             <Table.HeadCell>Product name</Table.HeadCell>
             <Table.HeadCell>Price</Table.HeadCell>
+            <Table.HeadCell>Costo</Table.HeadCell>
             <Table.HeadCell>Stock</Table.HeadCell>
             <Table.HeadCell>Description</Table.HeadCell>
             <Table.HeadCell>Supplier</Table.HeadCell>
@@ -65,6 +66,7 @@ const ItemList: React.FC = () => {
                   {item.name}
                 </Table.Cell>
                 <Table.Cell>{item.price}</Table.Cell>
+                <Table.Cell>{item.cost}</Table.Cell>
                 <Table.Cell>{item.quantity}</Table.Cell>
                 <Table.Cell>{item.description}</Table.Cell>
                 <Table.Cell>{item.supplier.name}</Table.Cell>
