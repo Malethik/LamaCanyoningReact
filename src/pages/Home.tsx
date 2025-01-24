@@ -5,6 +5,7 @@ import { Item } from "../model/item";
 import { Order } from "../model/order";
 import getMonthlyDataItems from "../helper/getMonthlyDataItems";
 import getMonthlyDataForOrders from "../helper/getMonthlyDataOrders";
+import { Costumers } from "../model/costumers";
 
 const Home: React.FC = () => {
   const [expensesData, setExpenses] = useState<number[]>([]);
@@ -19,6 +20,11 @@ const Home: React.FC = () => {
     error: itemsError,
     loading: itemsLoading,
   } = useFetch<Item[]>("item");
+  const {
+    data: costumersData,
+    error: costumersError,
+    loading: costumersLoading,
+  } = useFetch<Costumers[]>("costumers");
 
   useEffect(() => {
     if (ordersData) {
@@ -32,12 +38,18 @@ const Home: React.FC = () => {
     }
   }, [itemsData]);
 
-  if (ordersLoading && itemsLoading) return <p>Loading...</p>;
-  if (ordersError || itemsError)
-    return <p>Error fetching orders: {ordersError}</p>;
+  if (ordersLoading && itemsLoading && costumersLoading)
+    return <p>Loading...</p>;
+
+  if (ordersError || itemsError || costumersError)
+    return <p>Error fetching data</p>;
 
   return (
     <>
+      <div>Clienti: {costumersData?.length}</div>
+      <div>Ordini: {ordersData?.length}</div>
+      <div>Entrate: Da implementare </div>
+      <div>Uscite: Da implementare</div>
       <ApexChart
         title="Entrate e Uscite"
         expensesData={expensesData}

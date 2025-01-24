@@ -1,8 +1,9 @@
 import { Button, Table } from "flowbite-react";
+
 import useFetch from "../hooks/useFetch";
 import { Supplier } from "../model/supplier";
 import { useState } from "react";
-import CreateModal from "../components/CreateItemModal";
+import CreateModal from "../components/CreateModal";
 
 const SupplierList: React.FC = () => {
   const { data, error, loading } = useFetch<Supplier[]>("supplier");
@@ -24,7 +25,13 @@ const SupplierList: React.FC = () => {
   if (data?.length === 0) {
     return (
       <>
-        <Button onClick={() => setOpenModal(true)}>Aggiungi fornitore</Button>
+        <Button
+          onClick={() => setOpenModal(true)}
+          className="bg-cyan-600 text-white p-2 rounded-lg"
+        >
+          Aggiungi fornitore
+        </Button>
+
         <div>Nessun fornitore</div>
         <CreateModal
           contentType="supplier"

@@ -65,6 +65,15 @@ const NavBar = () => {
           >
             Fornitori
           </Navbar.Link>
+          <Navbar.Link
+            className="block py-2 pl-3 pr-4 md:p-0 bg-green-100  md:bg-transparent md:text-cyan-700"
+            as={Link}
+            to="/order"
+            title="Ordini"
+            onClick={handleLinkClick}
+          >
+            Ordini
+          </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </>
