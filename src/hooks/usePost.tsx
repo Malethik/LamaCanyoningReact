@@ -5,7 +5,7 @@ const usePost = <T,>() => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const baseUrl = "https://lamaback-owg8.onrender.com";
+  const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
   const postData = async (endpoint: string, payload: unknown) => {
     setLoading(true);

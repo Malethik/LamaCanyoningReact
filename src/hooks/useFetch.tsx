@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 
 const useFetch = <T,>(endpoint: string) => {
-  const baseUrl = "https://lamaback-owg8.onrender.com";
+  /*   const baseUrl = "https://lamaback-owg8.onrender.com"; */
+  const baseUrl = import.meta.env.VITE_BACKEND_URL;
   console.log(baseUrl);
 
   const [data, setData] = useState<T | null>(null);
@@ -17,9 +18,7 @@ const useFetch = <T,>(endpoint: string) => {
       }
       const response = await fetch(`${baseUrl}/${endpoint}`);
       if (!response.ok) {
-        throw new Error(
-          `Errore: ${response.status} - ${response.statusText}`
-        );
+        throw new Error(`Errore: ${response.status} - ${response.statusText}`);
       }
       const result = await response.json();
       setData(result);

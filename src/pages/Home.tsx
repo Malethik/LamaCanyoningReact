@@ -48,8 +48,8 @@ const Home: React.FC = () => {
     <>
       <div>Clienti: {costumersData?.length}</div>
       <div>Ordini: {ordersData?.length}</div>
-      <div>Entrate: Da implementare </div>
-      <div>Uscite: Da implementare</div>
+      <div>Entrate: {revenueData}€ </div>
+      <div>Uscite: {expensesData}€</div>
       <ApexChart
         title="Entrate e Uscite"
         expensesData={expensesData}

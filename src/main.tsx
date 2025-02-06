@@ -9,6 +9,8 @@ import ItemList from "./pages/ItemList.tsx";
 import SupplierList from "./pages/SuppliersList.tsx";
 import Error404 from "./pages/Error404.tsx";
 import OrderList from "./pages/OrderList.tsx";
+import Register from "./pages/register.tsx";
+import Login from "./pages/Login.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,8 @@ const router = createBrowserRouter([
       { path: "/item", element: <ItemList /> },
       { path: "/supplier", element: <SupplierList /> },
       { path: "/order", element: <OrderList /> },
+      { path: "/register", element: <Register /> },
+      { path: "/login", element: <Login /> },
       { path: "*", element: <Error404 /> },
     ],
   },
