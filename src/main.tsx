@@ -21,11 +21,14 @@ const router = createBrowserRouter([
       { path: "/item", element: <ItemList /> },
       { path: "/supplier", element: <SupplierList /> },
       { path: "/order", element: <OrderList /> },
-      { path: "/register", element: <Register /> },
-      { path: "/login", element: <Login /> },
       { path: "*", element: <Error404 /> },
     ],
   },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  { path: "/register", element: <Register /> },
 ]);
 
 createRoot(document.getElementById("root")!).render(

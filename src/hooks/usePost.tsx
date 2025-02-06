@@ -28,10 +28,12 @@ const usePost = <T,>() => {
         throw new Error(`Errore: ${response.status} - ${response.statusText}`);
       }
 
-      const result = await response.json();
+      const result: T = await response.json();
       setData(result);
-    } catch  {
-      setError('Errore nel caricamento dei dati');
+      return result;
+    } catch {
+      setError("Errore nel caricamento dei dati");
+      return null;
     } finally {
       setLoading(false);
     }
